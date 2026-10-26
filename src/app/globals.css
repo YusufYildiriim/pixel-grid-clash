@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;600;700;900&display=swap");
+
+:root {
+  --bg-primary: #0a0a14;
+  --bg-secondary: #121226;
+  --bg-card: rgba(22, 22, 45, 0.75);
+  --neon-cyan: #00ffcc;
+  --neon-pink: #ff007f;
+  --neon-yellow: #ffe600;
+  --neon-purple: #9d4edd;
+  --neon-blue: #00b4d8;
+  --text-main: #f0f4f8;
+  --text-muted: #8b9bb4;
+  --border-neon: rgba(0, 255, 204, 0.3);
+  --shadow-glow: 0 0 15px rgba(0, 255, 204, 0.35);
+  --shadow-pink: 0 0 15px rgba(255, 0, 127, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: "Outfit", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* CRT Arcade Scanline Efekti */
+body::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 999;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Tipografi */
+.font-arcade {
+  font-family: "Press Start 2P", monospace;
+  letter-spacing: 1px;
+}
+
+/* Dokunma Hedefleri En Az 44px (E6 Kriteri) */
+button,
+input,
+select,
+.interactive-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Neon Butonlar */
+.btn-arcade {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, #ff007f 0%, #b30059 100%);
+  border: 2px solid #ff66b2;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 0, 127, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+}
+
+.btn-arcade:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 0, 127, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: linear-gradient(135deg, #ff1a8c 0%, #cc0066 100%);
+}
+
+.btn-arcade:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(255, 0, 127, 0.4);
+}
+
+.btn-arcade:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.8);
+}
+
+.btn-cyan {
+  background: linear-gradient(135deg, #00ffcc 0%, #00997a 100%);
+  border-color: #66ffe0;
+  color: #05161d;
+  box-shadow: 0 4px 14px rgba(0, 255, 204, 0.4);
+}
+
+.btn-cyan:hover:not(:disabled) {
+  background: linear-gradient(135deg, #33ffd6 0%, #00b38f 100%);
+  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.6);
+}
+
+.btn-secondary {
+  background: rgba(30, 30, 60, 0.8);
+  border: 1px solid rgba(0, 255, 204, 0.4);
+  color: var(--neon-cyan);
+  box-shadow: none;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(40, 40, 80, 0.9);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+}
+
+/* Kartlar ve Konteynerler */
+.retro-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-neon);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 255, 204, 0.05);
+  padding: 1.5rem;
+}
+
+/* Giriş Kutusu */
+.retro-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(10, 10, 25, 0.8);
+  border: 2px solid rgba(0, 255, 204, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Outfit", sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.retro-input:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.4);
+}
+
+/* 4x4 Piksel Izgara (Pixel Grid Clash Alanı) */
+.pixel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+}
+
+.pixel-cell {
+  position: relative;
+  background: rgba(20, 20, 42, 0.85);
+  border: 2px solid rgba(0, 255, 204, 0.25);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+  min-height: 64px;
+  min-width: 64px;
+  user-select: none;
+  overflow: hidden;
+}
+
+.pixel-cell:hover:not(:disabled) {
+  border-color: var(--neon-cyan);
+  transform: scale(1.04);
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.5);
+}
+
+.pixel-cell:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.pixel-cell.bonus {
+  border-color: var(--neon-yellow);
+  background: rgba(255, 230, 0, 0.08);
+}
+
+.pixel-cell.glitch {
+  border-color: var(--neon-pink);
+  background: rgba(255, 0, 127, 0.08);
+  animation: pulse-glitch 2s infinite alternate;
+}
+
+@keyframes pulse-glitch {
+  0% { box-shadow: 0 0 5px rgba(255, 0, 127, 0.2); }
+  100% { box-shadow: 0 0 15px rgba(255, 0, 127, 0.6); }
+}
+
+/* Sayfa Üstü Banner & Bildirimler */
+.alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.alert-warning {
+  background: rgba(255, 170, 0, 0.15);
+  border: 1px solid #ffaa00;
+  color: #ffcc00;
+}
+
+.alert-error {
+  background: rgba(255, 0, 68, 0.15);
+  border: 1px solid #ff0044;
+  color: #ff6688;
+}
+
+.alert-info {
+  background: rgba(0, 255, 204, 0.15);
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+}
+
+/* Mobil 375px Genişlik Garantisi */
+@media (max-width: 480px) {
+  .pixel-grid {
+    gap: 6px;
+    max-width: 100%;
+  }
+
+  .pixel-cell {
+    min-height: 52px;
+    min-width: 52px;
+  }
+
+  .font-arcade {
+    font-size: 0.65rem;
+  }
+}
